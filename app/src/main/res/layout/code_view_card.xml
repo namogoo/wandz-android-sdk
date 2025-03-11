@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    android:layout_marginTop="16sp"
+    app:cardBackgroundColor="@android:color/transparent">
+    <br.tiagohm.codeview.CodeView
+        android:id="@+id/codeView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cv_font_size="14"
+        app:cv_highlight_line_number="1"
+        app:cv_show_line_number="true"
+        app:cv_start_line_number="9000"
+        app:cv_wrap_line="false"
+        app:cv_zoom_enable="true"/>
+</androidx.cardview.widget.CardView>

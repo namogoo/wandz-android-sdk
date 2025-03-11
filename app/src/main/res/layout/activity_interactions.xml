@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".InteractionsActivity"
+    android:orientation="vertical"
+    android:paddingStart="32sp"
+    android:paddingEnd="32sp"
+    android:paddingTop="24sp">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/interactions_mock"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:id="@+id/force_interaction_button"
+                android:layout_gravity="center"
+                android:layout_marginTop="16sp"
+                android:text="@string/show_interaction"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_interactions_title"
+                android:layout_marginTop="16sp"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:paddingTop="8sp"
+                android:text="@string/interactions_description"/>
+
+            <include android:id="@+id/include_code_view"
+                layout="@layout/code_view_card"/>
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

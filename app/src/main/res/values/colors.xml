@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue_200">#FFE6F3FF</color>
+    <color name="blue_500">#FFE6F3FF</color>
+    <color name="blue_700">#FFA6B3FF</color>
+    <color name="gray_200">#FF79747E</color>
+    <color name="gray_700">#FF59545E</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="lnk_color">#FF1971D8</color>
+    <color name="card_outline">#FFCAC4D0</color>
+    <color name="txt_primary">#FF131F3C</color>
+    <color name="input_bk">#FFF3F5F8</color>
+    <color name="input_bk_divider">#FF79747E</color>
+    <color name="btn_pressed_color">#FF1035B1</color>
+    <color name="btn_default_color">#FF0075E1</color>
+    <color name="btn_disabled_color">#FFE9EBEE</color>
+</resources>
