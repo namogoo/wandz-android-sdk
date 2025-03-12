@@ -1,8 +1,7 @@
 Wandz Android Demo
 ==================
 
-<img src="https://app.wandz.ai/assets/wandzLogoText-GmXTmWRx.svg" alt="Wandz.ai" style="background: #002571;
-padding: 10px;">
+<img src="https://app.wandz.ai/assets/wandzLogoText-GmXTmWRx.svg" alt="Wandz.ai">
 
 The Wandz.ai SDK library for Android empowers developers to integrate advanced predictive AI capabilities into mobile applications effortlessly. By leveraging real-time data and machine learning models, the SDK enables personalized, in-session predictions tailored to each user's behavior. This ensures that your app delivers the right content, offers, and experiences at the optimal moment, enhancing user engagement and conversion rates.
 Designed for flexibility and ease of use, the Wandz.ai SDK allows developers to seamlessly incorporate predictive analytics without extensive coding or technical overhead. The SDK integrates smoothly with existing Android applications, offering robust features to track and analyze user interactions in real-time. With built-in support for GDPR and CCPA compliance, Wandz.ai ensures that user privacy is maintained while delivering high-impact, data-driven insights to optimize every step of the customer journey.
@@ -36,10 +35,17 @@ Or Maven:
 
 How to use Wandz?
 -------------------
-Before starting to use the Wandz SDK, you need to get an account ID on the [Wandz.ai][2] portal. You will need to add this account ID to your AndroidManifest.xml file as a meta-data tag.
+Before starting to use the Wandz SDK, you need to get an account ID in order to activate Wandz on your application and for accessing the [Wandz.ai][2] portal. You will need to add your account ID to your AndroidManifest.xml file using a meta-data tag.
 Contact us at [Wandz.ai][3] to get your account ID.
 Check out the [documentation][4] for pages on a variety of topics.
 
+AndroidManifest example:
+```xml
+<application>
+    ...
+    <meta-data android:name="ai.wandz.sdk.client_id" android:value="YOUR_CLIENT_ID" />
+</application>
+```
 
 Simple use cases will look something like this:
 
