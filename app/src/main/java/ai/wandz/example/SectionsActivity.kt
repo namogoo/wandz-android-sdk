@@ -4,7 +4,11 @@ import ai.wandz.example.databinding.ActivitySectionsBinding
 import ai.wandz.sdk.api.WandzClient
 import ai.wandz.sdk.api.models.enums.AppSection
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -25,7 +29,7 @@ class SectionsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         initializeMockAppSectionSpinner()
-
+        initializeUIListeners()
         addCodeSample()
     }
 
@@ -44,18 +48,51 @@ class SectionsActivity : AppCompatActivity() {
         for (value in AppSection.entries) {
             items.add(value.toString())
         }
-        val sortedItems = items.sorted()
+        val sortedItems = ArrayList<String>()
+        sortedItems.add("Select Section Type")
+        sortedItems.addAll(items.sorted())
+
         val appSectionAdapter: ArrayAdapter<String> =
             ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, sortedItems)
         binding.sectionTypeSelector.adapter = appSectionAdapter
-        val spinnerPosition = appSectionAdapter.getPosition(AppSection.CATEGORY.toString())
-        binding.sectionTypeSelector.setSelection(spinnerPosition)
-        binding.btnOob.setOnClickListener{
-            val selected = binding.sectionTypeSelector.selectedItem.toString()
-            reportScreenEntered(selected)
+        binding.sectionTypeSelector.setSelection(0)
+    }
 
+    private fun initializeUIListeners() {
+        binding.sectionTypeSelector.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (position > 0) {
+                    binding.btnOob.isEnabled = true
+                } else {
+                    binding.btnOob.isEnabled = false
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                binding.btnOob.isEnabled = false
+            }
+        }
+        binding.btnOob.isEnabled = false
+        binding.btnOob.setOnClickListener{
+            var position = binding.sectionTypeSelector.selectedItemPosition
+            if (position > 0) {
+                val selected = binding.sectionTypeSelector.selectedItem.toString()
+                reportScreenEntered(selected)
+                binding.sectionTypeSelector.setSelection(0)
+            }
         }
 
+        binding.sectionTypeCustom.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                binding.btnCustom.isEnabled = s.toString().trim().isNotEmpty()
+            }
+        })
+        binding.btnCustom.isEnabled = false
         binding.btnCustom.setOnClickListener{
             val selected = binding.sectionTypeCustom.text.toString()
             reportScreenEntered(selected)

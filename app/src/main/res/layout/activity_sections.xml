@@ -53,6 +53,7 @@
                 android:layout_weight="1"
                 android:layout_height="40dp"
                 android:id="@+id/section_type_custom"
+                android:hint="@string/custom_section_hint"
                 android:maxLines="1"
                 android:background="@drawable/input_background"
                 />

@@ -64,7 +64,6 @@ class EventsActivity : AppCompatActivity() {
                     binding.btnOob.isEnabled = false
                 }
             }
-
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 binding.btnOob.isEnabled = false
             }

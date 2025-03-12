@@ -40,4 +40,5 @@
     <string name="data">Raw Data</string>
     <string name="data_action">See raw data</string>
     <string name="custom_event_hint">Fire custom event</string>
+    <string name="custom_section_hint">Fire custom section</string>
 </resources>
