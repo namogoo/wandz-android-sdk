@@ -1,11 +1,12 @@
 Wandz Android Demo
 ==================
 
-<img src="https://github.com/namogoo/wandz-android-sample/raw/main/ReadmeAssets/banner.png" alt="Wandz.ai">
+<img src="https://github.com/namogoo/wandz-android-sample/raw/main/ReadmeAssets/banner.png" alt="Wandz.ai"/>
 
 The Wandz.ai SDK library for Android empowers developers to effortlessly integrate advanced predictive AI capabilities into mobile applications. By leveraging real-time data and machine learning models, the SDK enables personalized, in-session predictions tailored to each user's behavior. This ensures that your app delivers the right content, offers, and experiences at the optimal moment, enhancing user engagement and conversion rates.
 Designed for flexibility and ease of use, the Wandz.ai SDK allows developers to seamlessly incorporate predictive analytics without extensive coding or technical overhead. The SDK integrates smoothly with existing Android applications, offering robust features to track and analyze user interactions in real-time. With built-in support for GDPR and CCPA compliance, Wandz.ai ensures that user privacy is maintained while delivering high-impact, data-driven insights to optimize every step of the customer journey.
 For more information on Wandz.ai predictions and use cases, visit our [website][1].
+
 Download
 --------
 For detailed instructions and requirements, see Wandz's [download and setup docs page][1].
