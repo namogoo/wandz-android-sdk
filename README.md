@@ -1,11 +1,11 @@
 Wandz Android Demo
 ==================
 
-<img src="https://app.wandz.ai/assets/wandzLogoText-GmXTmWRx.svg" alt="Wandz.ai">
+<img src="https://github.com/namogoo/wandz-android-sample/raw/main/ReadmeAssets/banner.png" alt="Wandz.ai">
 
-The Wandz.ai SDK library for Android empowers developers to integrate advanced predictive AI capabilities into mobile applications effortlessly. By leveraging real-time data and machine learning models, the SDK enables personalized, in-session predictions tailored to each user's behavior. This ensures that your app delivers the right content, offers, and experiences at the optimal moment, enhancing user engagement and conversion rates.
+The Wandz.ai SDK library for Android empowers developers to effortlessly integrate advanced predictive AI capabilities into mobile applications. By leveraging real-time data and machine learning models, the SDK enables personalized, in-session predictions tailored to each user's behavior. This ensures that your app delivers the right content, offers, and experiences at the optimal moment, enhancing user engagement and conversion rates.
 Designed for flexibility and ease of use, the Wandz.ai SDK allows developers to seamlessly incorporate predictive analytics without extensive coding or technical overhead. The SDK integrates smoothly with existing Android applications, offering robust features to track and analyze user interactions in real-time. With built-in support for GDPR and CCPA compliance, Wandz.ai ensures that user privacy is maintained while delivering high-impact, data-driven insights to optimize every step of the customer journey.
-
+For more information on Wandz.ai predictions and use cases, visit our [website][1].
 Download
 --------
 For detailed instructions and requirements, see Wandz's [download and setup docs page][1].
@@ -35,8 +35,7 @@ Or Maven:
 
 How to use Wandz?
 -------------------
-Before starting to use the Wandz SDK, you need to get an account ID in order to activate Wandz on your application and for accessing the [Wandz.ai][2] portal. You will need to add your account ID to your AndroidManifest.xml file using a meta-data tag.
-Contact us at [Wandz.ai][3] to get your account ID.
+Before using the Wandz SDK, you need a Wandz.ai Account ID to access the [platform portal][2] and activate it on your application. Contact us at [Wandz.ai][3] to get your Account ID. Once you have it, you will need to add your Account ID to your AndroidManifest.xml file using a meta-data tag.
 Check out the [documentation][4] for pages on a variety of topics.
 
 AndroidManifest example:
@@ -102,7 +101,7 @@ Ehud Lavin - @ehudlavin on GitHub
 
 License
 -------
-BSD, part MIT and Apache 2.0. See the [LICENSE][7] file for details.
+See the [LICENSE][7] file for details.
 
 [1]: https://wandz.ai
 [2]: https://app.wandz.ai/login
@@ -110,4 +109,4 @@ BSD, part MIT and Apache 2.0. See the [LICENSE][7] file for details.
 [4]: https://wandz.ai/use-cases
 [5]: https://wandz.ai/contact-us
 [6]: mailto:support@wandz.ai
-[7]: https://github.com/namogoo/wandz-android-sample/blob/main/LICENSE
+[7]: https://github.com/namogoo/wandz-android-sample/raw/main/LICENSE.pdf
