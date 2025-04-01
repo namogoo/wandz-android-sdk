@@ -104,10 +104,10 @@ License
 -------
 See the [LICENSE][7] file for details.
 
-[1]: https://wandz.ai
+[1]: https://github.com/namogoo/wandz-android-sample/raw/main/ReadmeAssets/WandzAndroidSDK.pdf
 [2]: https://app.wandz.ai/login
 [3]: https://wandz.ai/contact-us
-[4]: https://wandz.ai/use-cases
+[4]: https://github.com/namogoo/wandz-android-sample/raw/main/ReadmeAssets/WandzAndroidSDK.pdf
 [5]: https://wandz.ai/contact-us
 [6]: mailto:support@wandz.ai
 [7]: https://github.com/namogoo/wandz-android-sample/raw/main/LICENSE.pdf
