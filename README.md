@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-  implementation 'ai.wandz.android:core-wandz:1.0.30'
+  implementation 'ai.wandz.android:core-wandz:1.0.34'
 }
 ```
 
@@ -30,7 +30,7 @@ Or Maven:
 <dependency>
   <groupId>ai.wandz.android</groupId>
   <artifactId>core-wandz</artifactId>
-  <version>1.0.30</version>
+  <version>1.0.34</version>
 </dependency>
 ```
 
