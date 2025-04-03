@@ -9,7 +9,7 @@ For more information on Wandz.ai predictions and use cases, visit our [website][
 
 Download
 --------
-For detailed instructions and requirements, see Wandz's [download and setup docs page][1].
+For detailed instructions and requirements, see Wandz's [SDK documentation][4].
 
 You can download a jar using Gradle:
 
@@ -96,15 +96,11 @@ Getting Help
 To report a specific problem or feature request, [open a new issue via our contact form][5]. For questions, suggestions, or
 anything else, email [Wandz support][6].
 
-Author
-------
-Ehud Lavin - @ehudlavin on GitHub
-
 License
 -------
 See the [LICENSE][7] file for details.
 
-[1]: https://github.com/namogoo/wandz-android-sample/raw/main/ReadmeAssets/WandzAndroidSDK.pdf
+[1]: https://wandz.ai/
 [2]: https://app.wandz.ai/login
 [3]: https://wandz.ai/contact-us
 [4]: https://github.com/namogoo/wandz-android-sample/raw/main/ReadmeAssets/WandzAndroidSDK.pdf
