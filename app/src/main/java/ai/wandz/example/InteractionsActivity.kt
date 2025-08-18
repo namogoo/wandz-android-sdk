@@ -20,8 +20,9 @@ class InteractionsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityInteractionsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
 
-        WandzClient.reportScreenEnteredEvent("Interactions Screen", null, this)
+        WandzClient.trackView("Interactions Screen", null, this)
 
         // Allow interactions when the Interaction screen is visible
         WandzActivate.allowInteractions(true)

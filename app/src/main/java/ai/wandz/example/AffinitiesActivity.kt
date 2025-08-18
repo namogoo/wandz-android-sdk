@@ -23,8 +23,9 @@ class AffinitiesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAffinitiesBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
 
-        WandzClient.reportScreenEnteredEvent("affinities", null, this)
+        WandzClient.trackView("affinities", null, this)
 
         title = resources.getString(R.string.affinities)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

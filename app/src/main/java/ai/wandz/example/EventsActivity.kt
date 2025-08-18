@@ -22,8 +22,9 @@ class EventsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEventsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
 
-        WandzClient.reportScreenEnteredEvent("events", null, this)
+        WandzClient.trackView("events", null, this)
 
         title = resources.getString(R.string.events)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -74,7 +75,7 @@ class EventsActivity : AppCompatActivity() {
                 val selected = EventType.valueOfName(eventTypeAdapter.getItem(position))
 
                 //event can be reported using the following method
-                WandzClient.reportEvent(selected)
+                WandzClient.track(selected)
 
                 binding.eventsSelector.setSelection(0)
                 showEventsInUI()
@@ -84,7 +85,7 @@ class EventsActivity : AppCompatActivity() {
         binding.btnCustom.isEnabled = false
         binding.btnCustom.setOnClickListener {
             //custom event can be reported using the following method
-            WandzClient.reportEvent(binding.eventsCustom.text.toString())
+            WandzClient.track(binding.eventsCustom.text.toString())
             showEventsInUI()
         }
         binding.eventsCustom.addTextChangedListener(object : TextWatcher {
@@ -115,10 +116,10 @@ class EventsActivity : AppCompatActivity() {
     private fun addCodeSample() {
         val kotlinCode = "\n" +
             "//Report an event \n" +
-                "WandzClient.reportEvent(EventType.CLICK_HELP)\n" +
+                "WandzClient.track(EventType.CLICK_HELP)\n" +
                 "//reporting a custom event can be done using the following method\n" +
                 "//alternatively, you can use the reportEvent method to report predefined events\n" +
-                "WandzClient.reportEvent(\"Custom Event\")\n" +
+                "WandzClient.track(\"Custom Event\")\n" +
                 "//get all events\n" +
                 "WandzClient.getClientEvents()\n"
 

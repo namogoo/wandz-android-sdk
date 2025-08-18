@@ -2,16 +2,11 @@ package ai.wandz.example
 
 import ai.wandz.example.databinding.ActivityMainBinding
 import ai.wandz.sdk.api.WandzClient
-import ai.wandz.sdk.api.interfaces.IAffinityUpdateListener
-import ai.wandz.sdk.api.interfaces.IWandzAIFeaturesListener
-import ai.wandz.sdk.api.interfaces.IWandzAudiencesListener
-import ai.wandz.sdk.api.interfaces.IWandzPredictionsListener
 import ai.wandz.sdk.api.models.enums.AppSection
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.card.MaterialCardView
+import androidx.core.net.toUri
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -20,10 +15,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(true)
 
         //report screen entered event to Wandz SDK
         //this event is used to track user navigation in the app
-        WandzClient.reportScreenEnteredEvent(AppSection.HOME, null, this)
+        WandzClient.trackView(AppSection.HOME, null, this)
 
         binding.adaptiveSearchCard.setOnClickListener {
             adaptiveSearchDemo()
@@ -49,15 +48,15 @@ class MainActivity : AppCompatActivity() {
             dataDemo()
         }
 
-        binding.wandzAi.setOnClickListener() {
+        binding.wandzAi.setOnClickListener {
             //report button clicked event to Wandz SDK
             //this event is used to track user interaction with the app
             //you can use this event to track user interaction with any UI element in the app
             //custom event name can be any string
-            WandzClient.reportEvent("wandz_ai_button_clicked")
+            WandzClient.track("wandz_ai_button_clicked")
 
             //open wandz.ai website in browser
-            val wandzUri = Uri.parse("https://wandz.ai")
+            val wandzUri = "https://wandz.ai".toUri()
             startActivity(Intent(Intent.ACTION_VIEW, wandzUri))
         }
     }

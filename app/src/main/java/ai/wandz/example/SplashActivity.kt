@@ -5,7 +5,6 @@ import ai.wandz.example.databinding.ActivitySplashBinding
 import ai.wandz.sdk.api.WandzClient
 import ai.wandz.sdk.api.models.enums.AppSection
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -15,6 +14,7 @@ import android.view.WindowInsets
 import android.view.WindowInsetsController
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 
 
 class SplashActivity : AppCompatActivity() {
@@ -35,17 +35,17 @@ class SplashActivity : AppCompatActivity() {
 
         //report screen entered event to Wandz SDK
         //this event is used to track user navigation in the app
-        WandzClient.reportScreenEnteredEvent(AppSection.SPLASH)
+        WandzClient.trackView(AppSection.SPLASH)
 
-        binding.wandzAi.setOnClickListener() {
+        binding.wandzAi.setOnClickListener {
             //report button clicked event to Wandz SDK
             //this event is used to track user interaction with the app
             //you can use this event to track user interaction with any UI element in the app
             //custom event name can be any string
-            WandzClient.reportEvent("wandz_ai_button_clicked")
+            WandzClient.track("wandz_ai_button_clicked")
 
             //open wandz.ai website in browser
-            val wandzUri = Uri.parse("https://wandz.ai")
+            val wandzUri = "https://wandz.ai".toUri()
             startActivity(Intent(Intent.ACTION_VIEW, wandzUri))
         }
 

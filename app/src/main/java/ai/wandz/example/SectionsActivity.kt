@@ -22,8 +22,9 @@ class SectionsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySectionsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
 
-        WandzClient.reportScreenEnteredEvent("Screens", null, this)
+        WandzClient.trackView("Screens", null, this)
 
         title = resources.getString(R.string.sections)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -101,23 +102,23 @@ class SectionsActivity : AppCompatActivity() {
 
     private fun reportScreenEntered(selected: String) {
         if (selected.isNotEmpty()) {
-            WandzClient.reportScreenEnteredEvent(selected, null, this@SectionsActivity)
+            WandzClient.trackView(selected, null, this@SectionsActivity)
             Toast.makeText(this, "Screen entered event reported: '$selected' section", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun addCodeSample() {WandzClient.reportScreenEnteredEvent(AppSection.CATEGORY, "Jeans")
+    private fun addCodeSample() {WandzClient.trackView(AppSection.CATEGORY, "Jeans")
         WandzClient.getAdaptiveSearchSuggestions()
-        WandzClient.reportScreenEnteredEvent(AppSection.HOME, null, this)
+        WandzClient.trackView(AppSection.HOME, null, this)
         val kotlinCode = "\n" +
             "//Report screen entered using AppSection enum, description &amp; current activity\n" +
-                "WandzClient.reportScreenEnteredEvent(AppSection.CATEGORY, \"Jeans\", this)\n\n" +
+                "WandzClient.trackView(AppSection.CATEGORY, \"Jeans\", this)\n\n" +
                 "//Report screen entered using AppSection enum only\n" +
-                "WandzClient.reportScreenEnteredEvent(AppSection.HOME)\n\n" +
+                "WandzClient.trackView(AppSection.HOME)\n\n" +
                 "//Report screen entered using custom section only\n" +
-                "WandzClient.reportScreenEnteredEvent(\"Other Section\")\n\n" +
+                "WandzClient.trackView(\"Other Section\")\n\n" +
                 "//Report screen entered with description\n" +
-                "WandzClient.reportScreenEnteredEvent(AppSection.CATEGORY, \"Jeans\")\n\n"
+                "WandzClient.trackView(AppSection.CATEGORY, \"Jeans\")\n\n"
         binding.includeCodeView.codeView
             .setTheme(Theme.TOMORROW_NIGHT_BLUE)
             .setCode(kotlinCode)

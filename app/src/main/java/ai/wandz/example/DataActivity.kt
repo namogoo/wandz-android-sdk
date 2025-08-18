@@ -2,26 +2,28 @@ package ai.wandz.example
 
 import ai.wandz.example.databinding.ActivityDataBinding
 import ai.wandz.sdk.api.WandzClient
-import ai.wandz.sdk.api.interfaces.IAffinityUpdateListener
-import ai.wandz.sdk.api.interfaces.IWandzAIFeaturesListener
-import ai.wandz.sdk.api.interfaces.IWandzAudiencesListener
-import ai.wandz.sdk.api.interfaces.IWandzPredictionsListener
+import ai.wandz.sdk.api.models.Audience
+import ai.wandz.sdk.api.models.PredictionModel
+import ai.wandz.sdk.api.models.WandzListener
+import ai.wandz.sdk.api.models.enums.AffinityType
 import ai.wandz.sdk.api.models.enums.AppSection
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import java.util.ArrayList
 
-class DataActivity : AppCompatActivity(), IAffinityUpdateListener {
+class DataActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDataBinding
     private val mapFeatures = HashMap<String, String>()
+    private var wandzListener: WandzListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         binding = ActivityDataBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        WandzClient.reportScreenEnteredEvent("data", null, this)
+        setSupportActionBar(binding.toolbar)
+        WandzClient.trackView("data", null, this)
 
         title = resources.getString(R.string.data)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -45,14 +47,32 @@ class DataActivity : AppCompatActivity(), IAffinityUpdateListener {
         //and can be requested manually using the following method
         WandzClient.requestPrediction()
 
-        registerToWandzPredictions()
-        registerToWandzAiFeatures()
-        registerToWandzAudiences()
-        WandzClient.registerAffinityUpdateListener(this)
-
+        wandzListener = object : WandzListener() {
+            override fun affinityDetected(
+                affinityType: AffinityType?,
+                value: String?,
+                keyword: String?
+            ) {
+                affinityUpdateCallback()
+                super.affinityDetected(affinityType, value, keyword)
+            }
+            override fun featureUpdated(key: String, value: Any?) {
+                aiFeatureCallback(key, value)
+                super.featureUpdated(key, value)
+            }
+            override fun predictionsUpdated(predictions: ArrayList<PredictionModel>) {
+                predictionsCallback(predictions)
+                super.predictionsUpdated(predictions)
+            }
+            override fun audiencesUpdated(audiences: ArrayList<Audience>) {
+                audienceCallback(audiences)
+                super.audiencesUpdated(audiences)
+            }
+        }
+        WandzClient.registerWandzListener(wandzListener)
 
         // On every screen change a report needs to be send to describe the type of screen
-        WandzClient.reportScreenEnteredEvent(AppSection.CATEGORY, "Jeans", this)
+        WandzClient.trackView(AppSection.CATEGORY, "Jeans", this)
 
         // Custom AI features can be set using the following method
         WandzClient.setCustomAiFeature("custom", "Custom Value")
@@ -63,53 +83,42 @@ class DataActivity : AppCompatActivity(), IAffinityUpdateListener {
 
     }
 
-    private fun registerToWandzAiFeatures() {
-
-        val listener = IWandzAIFeaturesListener { key, value ->
-            if (key == null || value == null) {
-                return@IWandzAIFeaturesListener
-            }
-            mapFeatures[key] = value.toString()
-            val sortedFeatures = mapFeatures.toSortedMap()
-            val toShow = StringBuilder()
-            for ((index, feature) in sortedFeatures.entries.withIndex()) {
-                toShow.append(index + 1).append(". ").append(feature.key).append(" = ").append(feature.value).append("\n")
-            }
-            binding.tvAiFeatures.text = toShow.toString()
-
-            val sbEvents = StringBuilder()
-            WandzClient.getClientEvents().forEach {
-                sbEvents.append("• ").append(it.key).append("=").append(it.value).append("\n")
-            }
-            binding.tvEvents.text = sbEvents.toString()
+    private fun aiFeatureCallback (key: String?, value: Any?) {
+        if (key == null || value == null) {
+            return
         }
-        // Register the listener if you wish to get notified on every feature change
-        // Alternatively, you can use WandzClient.getAiFeatureValue method to get the current features
-        WandzClient.registerAiFeaturesListeners(listener)
+        mapFeatures[key] = value.toString()
+        val sortedFeatures = mapFeatures.toSortedMap()
+        val toShow = StringBuilder()
+        for ((index, feature) in sortedFeatures.entries.withIndex()) {
+            toShow.append(index + 1).append(". ").append(feature.key).append(" = ").append(feature.value).append("\n")
+        }
+        binding.tvAiFeatures.text = toShow.toString()
+
+        val sbEvents = StringBuilder()
+        WandzClient.getClientEvents().forEach {
+            sbEvents.append("• ").append(it.key).append("=").append(it.value).append("\n")
+        }
+        binding.tvEvents.text = sbEvents.toString()
     }
 
-    private fun registerToWandzPredictions() {
-        val listener =  IWandzPredictionsListener { predictions ->
-            val toShow = StringBuilder()
-            for (prediction in predictions) {
-                toShow.append("• ").append(prediction.displayName).append(" = ")
-                    .append(prediction.prediction).append(" (")
-                    .append(prediction.predictionScore).append(")").append("\n")
-            }
-            binding.tvPredictions.text = toShow.toString()
+
+    private fun predictionsCallback(predictions : ArrayList<PredictionModel>) {
+        val toShow = StringBuilder()
+        for (prediction in predictions) {
+            toShow.append("• ").append(prediction.displayName).append(" = ")
+                .append(prediction.prediction).append(" (")
+                .append(prediction.predictionScore).append(")").append("\n")
         }
-        WandzClient.registerPredictionsListener(listener)
+        binding.tvPredictions.text = toShow.toString()
     }
 
-    private fun registerToWandzAudiences() {
-        val listener =  IWandzAudiencesListener { audiences ->
-            val toShow = StringBuilder()
-            for (audience in audiences) {
-                toShow.append("• ").append(audience.name).append("\n")
-            }
-            binding.tvAudiences.text = toShow.toString()
+    private fun audienceCallback(audiences : ArrayList<Audience>) {
+        val toShow = StringBuilder()
+        for (audience in audiences) {
+            toShow.append("• ").append(audience.name).append("\n")
         }
-        WandzClient.registerAudiencesListeners(listener)
+        binding.tvAudiences.text = toShow.toString()
     }
 
     private fun displayWandzAffinities() {
@@ -130,7 +139,7 @@ class DataActivity : AppCompatActivity(), IAffinityUpdateListener {
         binding.tvAdaptiveSearch.text = toShow.toString()
     }
 
-    override fun affinityUpdateCallback() {
+    fun affinityUpdateCallback() {
         displayWandzAffinities()
     }
 }

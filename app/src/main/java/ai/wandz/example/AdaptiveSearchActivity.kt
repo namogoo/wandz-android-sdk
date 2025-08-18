@@ -2,7 +2,7 @@ package ai.wandz.example
 
 import ai.wandz.example.databinding.ActivityAdaptiveSearchBinding
 import ai.wandz.sdk.api.WandzClient
-import ai.wandz.sdk.api.interfaces.IAffinityUpdateListener
+import ai.wandz.sdk.api.models.WandzListener
 import ai.wandz.sdk.api.models.enums.AffinityType
 import android.os.Bundle
 import android.view.MenuItem
@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import br.tiagohm.codeview.Language
 import br.tiagohm.codeview.Theme
 
-class AdaptiveSearchActivity : AppCompatActivity(), IAffinityUpdateListener {
+class AdaptiveSearchActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAdaptiveSearchBinding
     private lateinit var autocompleteAdapter: ArrayAdapter<String>
 
@@ -20,6 +20,7 @@ class AdaptiveSearchActivity : AppCompatActivity(), IAffinityUpdateListener {
         super.onCreate(savedInstanceState)
         binding = ActivityAdaptiveSearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
 
         title = resources.getString(R.string.adaptive_search)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -73,12 +74,20 @@ class AdaptiveSearchActivity : AppCompatActivity(), IAffinityUpdateListener {
         binding.autocompleteTextView.setAdapter(autocompleteAdapter)
         binding.autocompleteTextView.threshold = 1
 
-
-        WandzClient.registerAffinityUpdateListener(this)
+        val wandzListener = object : WandzListener() {
+            override fun affinityDetected(
+                affinityType: AffinityType?,
+                value: String?,
+                keyword: String?
+            ) {
+                refillAutocompleteSuggestions()
+                super.affinityDetected(affinityType, value, keyword)
+            }
+        }
+        WandzClient.registerWandzListener(wandzListener)
     }
 
-
-    override fun affinityUpdateCallback() {
+    fun refillAutocompleteSuggestions() {
         autocompleteAdapter.clear()
         autocompleteAdapter.addAll(WandzClient.getAdaptiveSearchSuggestions())
         autocompleteAdapter.notifyDataSetChanged()
