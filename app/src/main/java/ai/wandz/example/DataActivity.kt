@@ -14,7 +14,7 @@ import java.util.ArrayList
 
 class DataActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDataBinding
-    private val mapFeatures = HashMap<String, String>()
+    private val mapAttributes = HashMap<String, String>()
     private var wandzListener: WandzListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,9 +56,9 @@ class DataActivity : AppCompatActivity() {
                 affinityUpdateCallback()
                 super.affinityDetected(affinityType, value, keyword)
             }
-            override fun featureUpdated(key: String, value: Any?) {
-                aiFeatureCallback(key, value)
-                super.featureUpdated(key, value)
+            override fun attributeUpdated(key: String, value: Any?) {
+                attributeCallback(key, value)
+                super.attributeUpdated(key, value)
             }
             override fun predictionsUpdated(predictions: ArrayList<PredictionModel>) {
                 predictionsCallback(predictions)
@@ -74,26 +74,27 @@ class DataActivity : AppCompatActivity() {
         // On every screen change a report needs to be send to describe the type of screen
         WandzClient.trackView(AppSection.CATEGORY, "Jeans", this)
 
-        // Custom AI features can be set using the following method
-        WandzClient.setCustomAiFeature("custom", "Custom Value")
+        // Custom attributes can be set using the following method
+        WandzClient.setCustomAttribute("custom", "Custom Value")
 
         // Affinities can be calculated using the following method
         WandzClient.calculateAffinities("xyz, veSt, test, Green")
         displayWandzAffinities()
 
+        audienceCallback(WandzClient.getAudiences())
     }
 
-    private fun aiFeatureCallback (key: String?, value: Any?) {
+    private fun attributeCallback (key: String?, value: Any?) {
         if (key == null || value == null) {
             return
         }
-        mapFeatures[key] = value.toString()
-        val sortedFeatures = mapFeatures.toSortedMap()
+
+        val sortedAttributes = WandzClient.getAllAttributes().toSortedMap()
         val toShow = StringBuilder()
-        for ((index, feature) in sortedFeatures.entries.withIndex()) {
-            toShow.append(index + 1).append(". ").append(feature.key).append(" = ").append(feature.value).append("\n")
+        for ((index, attribute) in sortedAttributes.entries.withIndex()) {
+            toShow.append(index + 1).append(". ").append(attribute.key).append(" = ").append(attribute.value).append("\n")
         }
-        binding.tvAiFeatures.text = toShow.toString()
+        binding.tvAttributes.text = toShow.toString()
 
         val sbEvents = StringBuilder()
         WandzClient.getClientEvents().forEach {

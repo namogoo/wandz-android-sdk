@@ -34,12 +34,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/ai_features_title"
+                    android:text="@string/attributes_title"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:paddingTop="12sp"/>
                 <TextView
-                    android:id="@+id/tv_ai_features"
+                    android:id="@+id/tv_attributes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView

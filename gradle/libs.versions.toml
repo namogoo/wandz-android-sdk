@@ -1,7 +1,7 @@
 [versions]
 agp = "8.8.0+"
-coreWandz = "1.0.46+"
-activateWandz = "1.0.23+"
+coreWandz = "1.0.49+"
+activateWandz = "1.0.24+"
 kotlin = "1.9.24"
 coreKtx = "1.15.0"
 junit = "4.13.2"

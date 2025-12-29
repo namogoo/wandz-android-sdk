@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Wandz SDK</string>
-    <string name="ai_features_title">AI Features</string>
+    <string name="attributes_title">Attributes</string>
     <string name="predictions_title">Predictions</string>
     <string name="audiences_title">Audiences</string>
     <string name="events_title">Events</string>
@@ -22,7 +22,7 @@
     <string name="sections">Sections</string>
     <string name="sections_action">Report Section change</string>
     <string name="about_sections_title">About section change Events</string>
-    <string name="sections_description">Wandz.ai’s Automatic Section Mapping is a core capability that powers many of our real-time features by understanding your app structure—automatically. Instead of requiring manual tagging or engineering setup, Wandz.ai scans your app to detect and classify key sections like the homepage, category views, product detail screens, cart, checkout, and more. Using advanced pattern recognition and real-time analysis, it identifies the structure and intent of each screen as users navigate, even if the app has custom layouts or dynamic routes. This automatic mapping enables Wandz.ai to understand the customer journey from the very first session, in real time and at scale. It fuels features like Adaptive Search, Adaptive Interactions, and Flow Analytics by providing instant context—what the visitor is seeing, where they are in the funnel, and what matters most right now. It’s entirely no-code, privacy-compliant, and works out of the box, dramatically accelerating time to value while removing friction for product and data teams.</string>
+    <string name="sections_description">Wandz.ai’s Automatic Section Mapping is a core capability that powers many of our real-time attributes by understanding your app structure—automatically. Instead of requiring manual tagging or engineering setup, Wandz.ai scans your app to detect and classify key sections like the homepage, category views, product detail screens, cart, checkout, and more. Using advanced pattern recognition and real-time analysis, it identifies the structure and intent of each screen as users navigate, even if the app has custom layouts or dynamic routes. This automatic mapping enables Wandz.ai to understand the customer journey from the very first session, in real time and at scale. It fuels features like Adaptive Search, Adaptive Interactions, and Flow Analytics by providing instant context—what the visitor is seeing, where they are in the funnel, and what matters most right now. It’s entirely no-code, privacy-compliant, and works out of the box, dramatically accelerating time to value while removing friction for product and data teams.</string>
     <string name="events">Events</string>
     <string name="events_action">Learn how to fire events</string>
     <string name="about_events_title">About Events</string>
